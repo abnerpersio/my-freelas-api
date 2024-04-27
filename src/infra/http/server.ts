@@ -2,6 +2,7 @@ import express, { Application, json } from 'express';
 import { Env } from '~/infra/config/env';
 import { CorsMiddleware } from '~/infra/http/middlewares/cors';
 import { HttpRouter } from '~/infra/http/router';
+import { logger } from '~/infra/config/logger';
 
 export class Server {
   private readonly app: Application;
@@ -18,6 +19,6 @@ export class Server {
   }
 
   run() {
-    this.app.listen(Env.PORT, () => console.log(`Server is running on port ${Env.PORT}`));
+    this.app.listen(Env.PORT, () => logger.info(`Server is running on port ${Env.PORT}`));
   }
 }
