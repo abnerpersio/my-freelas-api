@@ -4,6 +4,12 @@ export type HttpResponse<R = unknown> = {
   data?: R;
 };
 
+export type Context = {
+  user: {
+    id: string;
+  };
+};
+
 export interface UseCase<I = Record<string, unknown>, R = unknown> {
-  execute(input: I): Promise<HttpResponse<R>>;
+  execute(input: I, context?: Context): Promise<HttpResponse<R>>;
 }
