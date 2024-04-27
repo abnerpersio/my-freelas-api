@@ -1,3 +1,5 @@
+import { RequestValidator } from '~/infra/http/middlewares/validator';
+
 export type HttpResponse<R = unknown> = {
   status: number;
   message?: string;
@@ -12,4 +14,6 @@ export type Context = {
 
 export interface UseCase<I = Record<string, unknown>, R = unknown> {
   execute(input: I, context?: Context): Promise<HttpResponse<R>>;
+
+  validate?: RequestValidator;
 }

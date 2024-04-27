@@ -33,4 +33,8 @@ export class CreateResponse {
   static conflict(message?: string): HttpResponse {
     return { status: 409, message };
   }
+
+  static unprocessableEntity(data?: string | Record<string, string>): HttpResponse {
+    return { status: 422, data };
+  }
 }

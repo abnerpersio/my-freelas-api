@@ -36,7 +36,7 @@ export class AuthMiddleware extends BaseMiddleware {
       const hasUser = await this.respository.findById(user.id);
       if (!hasUser) return CreateResponse.unauthorized('Invalid token');
 
-      (req as any).context = { user };
+      (req as any).context = { user: { id: hasUser.id } };
       return true;
     } catch (error) {
       if (error instanceof ExpiredTokenError) {
