@@ -1,15 +1,15 @@
 import {
   User as PrismaUser,
-  Timesheet as PrismaTimesheet,
+  Project as PrismaProject,
   Transaction as PrismaTransaction,
   TransactionStatus,
 } from '@prisma/client';
-import { Timesheet } from './timesheet';
 import { User } from './user';
+import { Project } from './project';
 
 type Input = PrismaTransaction & {
   user?: PrismaUser;
-  timesheets?: PrismaTimesheet[];
+  projects?: PrismaProject[];
 };
 
 export class Transaction {
@@ -18,7 +18,7 @@ export class Transaction {
   created_at: Date;
 
   user: User | null;
-  timesheets: Timesheet[];
+  projects: Project[];
 
   constructor(input: Input) {
     this.id = input.id;
@@ -26,6 +26,6 @@ export class Transaction {
     this.created_at = input.created_at;
 
     this.user = input.user ? new User(input.user) : null;
-    this.timesheets = (input.timesheets || []).map((timesheet) => new Timesheet(timesheet));
+    this.projects = (input.projects || []).map((project) => new Project(project));
   }
 }
