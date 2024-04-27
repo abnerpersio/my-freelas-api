@@ -13,7 +13,7 @@ export class CorsMiddleware extends BaseMiddleware {
     res.setHeader('access-control-allow-headers', 'Authorization,Content-Type');
     res.setHeader('access-control-max-age', 24 * 60 * 60);
 
-    if (req.method === 'CORS') {
+    if (req.method === 'OPTIONS') {
       return CreateResponse.ok();
     }
 

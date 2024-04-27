@@ -5,6 +5,8 @@ import { HttpResponse } from '~/infra/http/base';
 
 export type MiddlewareResponse<R = unknown> = HttpResponse<R> | true;
 
+export type DefaultMiddlewares = 'auth';
+
 export abstract class BaseMiddleware {
   protected abstract execute(
     req: Request,
