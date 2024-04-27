@@ -14,6 +14,10 @@ export class CreateResponse {
     return { status: 204 };
   }
 
+  static badRequest(message?: string) {
+    return { status: 400, message };
+  }
+
   static notFound(message?: string): HttpResponse {
     return { status: 404, message: message || 'Not found' };
   }
@@ -24,5 +28,9 @@ export class CreateResponse {
 
   static unauthorized(message?: string): HttpResponse {
     return { status: 401, message };
+  }
+
+  static conflict(message?: string): HttpResponse {
+    return { status: 409, message };
   }
 }
