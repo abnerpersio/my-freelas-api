@@ -8,6 +8,6 @@ import {
 export interface TransactionRepository {
   list: (userId: string, filters?: TransactionFilters) => Promise<Transaction[]>;
   findById: (userId: string, id: string) => Promise<Transaction | null>;
-  create: (transaction: CreateTransactionInput) => Promise<void>;
-  update: (transaction: UpdateTransactionInput) => Promise<void>;
+  create: (userId: string, transaction: CreateTransactionInput) => Promise<void>;
+  update: (userId: string, id: string, transaction: UpdateTransactionInput) => Promise<void>;
 }

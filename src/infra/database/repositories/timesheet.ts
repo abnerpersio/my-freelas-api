@@ -7,6 +7,6 @@ import {
 export interface TimesheetRepository {
   list: (userId: string, filters?: TimesheetFilters) => Promise<Timesheet[]>;
   findById: (userId: string, id: string) => Promise<Timesheet | null>;
-  create: (timesheet: CreateTimesheetInput) => Promise<void>;
-  update: (timesheet: UpdateTimesheetInput) => Promise<void>;
+  create: (userId: string, timesheet: CreateTimesheetInput) => Promise<void>;
+  update: (userId: string, id: string, timesheet: UpdateTimesheetInput) => Promise<void>;
 }
