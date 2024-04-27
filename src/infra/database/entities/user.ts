@@ -14,4 +14,12 @@ export class User {
     this.password = input.password;
     this.created_at = input.created_at;
   }
+
+  get meDetails() {
+    return {
+      id: this.id,
+      name: this.name,
+      email: this.email,
+    };
+  }
 }
