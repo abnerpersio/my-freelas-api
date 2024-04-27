@@ -8,12 +8,14 @@ export class ExpressAdapter {
 
   adapt = async (req: Request, res: Response) => {
     const input = { ...(req.body || {}), ...(req.query || {}), ...(req.params || {}) };
+    const context = req.context || {};
 
     try {
-      const { status, message, data } = await this.useCase.execute(input);
+      const { status, message, data } = await this.useCase.execute(input, context);
+      const success = status >= 200 && status < 300;
 
       if (message || data) {
-        res.status(status).json({ message, data });
+        res.status(status).json({ success, message, data });
         return;
       }
 
