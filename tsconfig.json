@@ -14,7 +14,8 @@
     "skipLibCheck": true,
     "strict": true,
     "esModuleInterop": true,
-    "rootDir": ".",    
+    "rootDir": ".",
+    "typeRoots": ["src/@types"],
     "paths": {
       "~/shared/*": ["./src/shared/*"],
       "~/infra/*": ["./src/infra/*"],
