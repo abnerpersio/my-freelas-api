@@ -1,4 +1,10 @@
 import { HealthController } from '~/domain/health/controller';
+import { CreateProjectController } from '~/domain/project/create/controller';
+import { ListProjectController } from '~/domain/project/list/controller';
+import { CreateTimesheetController } from '~/domain/timesheet/create/controller';
+import { ListTimesheetController } from '~/domain/timesheet/list/controller';
+import { CreateTransactionController } from '~/domain/transaction/create/controller';
+import { ListTransactionController } from '~/domain/transaction/list/controller';
 import { CreateUserController } from '~/domain/user/create-user/controller';
 import { LoginController } from '~/domain/user/login/controller';
 import { MeController } from '~/domain/user/me/controller';
@@ -24,5 +30,35 @@ export const ROUTES: Route[] = [
     path: '/refresh-token',
     method: 'POST',
     useCase: RefreshTokenController.create(),
+  },
+  {
+    path: '/projects',
+    method: 'POST',
+    useCase: CreateProjectController.create(),
+  },
+  {
+    path: '/projects',
+    method: 'GET',
+    useCase: ListProjectController.create(),
+  },
+  {
+    path: '/transactions',
+    method: 'POST',
+    useCase: CreateTransactionController.create(),
+  },
+  {
+    path: '/transactions',
+    method: 'GET',
+    useCase: ListTransactionController.create(),
+  },
+  {
+    path: '/timesheets',
+    method: 'POST',
+    useCase: CreateTimesheetController.create(),
+  },
+  {
+    path: '/timesheets',
+    method: 'GET',
+    useCase: ListTimesheetController.create(),
   },
 ];
