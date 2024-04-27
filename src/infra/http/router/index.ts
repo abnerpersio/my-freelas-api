@@ -1,4 +1,4 @@
-import { Application, RequestHandler } from 'express';
+import { Application } from 'express';
 import { ExpressAdapter } from '~/infra/http/adapter';
 import { ROUTES } from '~/infra/http/router/routes';
 import { BaseMiddleware, DefaultMiddlewares } from '../middlewares/base';
@@ -21,7 +21,7 @@ export class HttpRouter {
         ...this.getMiddlewares(route.middlewares || []),
         new ExpressAdapter(route.useCase).adapt,
       ];
-      this.server[method](route.path, handlers as unknown as RequestHandler[]);
+      this.server[method](route.path, handlers);
     }
   }
 

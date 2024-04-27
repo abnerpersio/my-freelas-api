@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
 import { logger } from '~/infra/config/logger';
 import { RequestError } from '~/infra/errors/request-error';
-import { UseCase } from '~/infra/http/base';
+import { Context, UseCase } from '~/infra/http/base';
 
 export class ExpressAdapter {
   constructor(private readonly useCase: UseCase) {}
 
   adapt = async (req: Request, res: Response) => {
     const input = { ...(req.body || {}), ...(req.query || {}), ...(req.params || {}) };
-    const context = req.context || {};
+    const context = ((req as any).context || {}) as Context;
 
     try {
       const { status, message, data } = await this.useCase.execute(input, context);
