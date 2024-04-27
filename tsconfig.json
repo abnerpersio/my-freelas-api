@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "moduleResolution": "node",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "ES2022",
     "sourceMap": false,
+    "target": "ES2022",
     "outDir": "dist",
     "baseUrl": "./",
     "incremental": true,

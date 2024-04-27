@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TransactionStatus {
+  IN_PROGRESS
+  AWAITING_PAYMENT
+  PAID
+}
+
+model User {
+  id       String  @id @default(uuid())
+  email    String  @unique
+  name     String?
+  password String
+
+  timesheets   Timesheet[]
+  transactions Transaction[]
+
+  @@map("users")
+}
+
+model Timesheet {
+  id          String   @id @default(uuid())
+  start       DateTime
+  end         DateTime
+  duration    Int
+  description String?
+
+  user_id        String
+  user           User         @relation(fields: [user_id], references: [id])
+  transaction_id String?
+  transaction    Transaction? @relation(fields: [transaction_id], references: [id])
+
+  @@map("timesheets")
+}
+
+model Transaction {
+  id     String            @id @default(uuid())
+  status TransactionStatus
+
+  user_id    String
+  user       User        @relation(fields: [user_id], references: [id])
+  timesheets Timesheet[]
+
+  @@map("transactions")
+}
